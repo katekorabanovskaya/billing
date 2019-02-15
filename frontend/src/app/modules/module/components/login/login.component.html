@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-1">
+
+      <h1 class="page-header">Please Log In</h1>
+
+      <form #loginForm="ngForm" novalidate>
+        <div class="form-group">
+          <label>Login: </label>
+          <div class="input-group">
+            <span class="input-group-addon">@</span>
+            <input type="email" name="email" class="form-control" [(ngModel)]="login"
+                   placeholder="Enter E-mail" required email autofocus>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Your password: </label>
+          <div class="input-group">
+            <span class="input-group-addon">@</span>
+            <input type="password" name="password" class="form-control" [(ngModel)]="password"
+                   placeholder="Enter password" required>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="isError === true">
+          <alert type="danger">
+            <strong>Oh snap!</strong> Invalid login or password
+          </alert>
+        </div>
+
+        <hr>
+
+        <div class="row">
+          <button class="btn btn-link col-md-5" type="button"
+                  (click)="signIn()">Sign in
+          </button>
+          <button [disabled]="loginForm.invalid" class="btn btn-primary col-md-5 col-md-offset-2" type="button"
+                  (click)="logIn()">Log in
+          </button>
+        </div>
+      </form>
+    </div><!--col-->
+  </div><!--row-->
+</div> <!-- /container -->

@@ -1,0 +1,83 @@
+<div class="container" style="margin-bottom: 30px">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-1">
+
+      <h1 class="page-header">Please Sign In</h1>
+
+      <form #signInForm="ngForm" novalidate>
+        <div class="form-group">
+          <label>Your login: </label>
+          <div class="input-group">
+            <span class="input-group-addon">@</span>
+            <input type="email" name="email" class="form-control" [(ngModel)]="account.user.login"
+                   placeholder="Enter E-mail"
+                   required autofocus email>
+          </div>
+
+          <label>Your username:</label>
+          <div class="input-group">
+            <span class="input-group-addon">@</span>
+            <input type="text" name="username" class="form-control" [(ngModel)]="account.username"
+                   placeholder="Enter username"
+                   required>
+                   <!--pattern="[a-zA-Z][a-zA-Z0-9]{1, 15}"-->
+                   <!--title="Incorrect">-->
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Your password:</label>
+          <input type="password" name="password" class="form-control" [(ngModel)]="account.user.password"
+                 (input)="confirmPasswords()"
+                 placeholder="Enter password" required>
+
+          <label>Confirm your password:</label>
+          <input type="password" name="passwordConfirm" class="form-control" [(ngModel)]="confirmPassword"
+                 (input)="confirmPasswords()"
+                 placeholder="Repeat password" required>
+
+          <alert type="success" *ngIf="confirm === true">
+            <strong>Well done!</strong> Passwords matched
+          </alert>
+          <alert type="warning" *ngIf="confirm === false">
+            <strong>Warning!</strong> Passwords not matched
+          </alert>
+        </div>
+
+        <hr>
+
+        <div class="form-group">
+          <label>Your first name:</label>
+          <input type="text" name="firstName" class="form-control" [(ngModel)]="account.firstName"
+                 placeholder="Enter first name" required>
+
+          <label>Your last name:</label>
+          <input type="text" name="lastName" class="form-control" [(ngModel)]="account.lastName"
+                 placeholder="Enter last name" required>
+        </div>
+
+        <div class="form-group">
+          <label>Your birthday: </label>
+          <div class="input-group">
+            <input type="text"
+                   placeholder="Enter birthday"
+                   class="form-control"
+                   bsDatepicker
+                   [maxDate]="calendarMaxDate"
+                   (bsValueChange)="dateChange($event)">
+            <span class="input-group-addon">
+            <span class="glyphicon-calendar glyphicon"></span>
+          </span>
+          </div>
+        </div>
+
+        <div class="row">
+          <button class="btn btn-link col-md-offset-1 col-md-5" type="button" (click)="logIn()">Log in</button>
+          <button [disabled]="signInForm.invalid" class="btn btn-primary col-md-5" type="button"
+                  (click)="signIn()">Sign in
+          </button>
+        </div>
+      </form>
+    </div><!--col-->
+  </div><!--row-->
+</div><!--container-->

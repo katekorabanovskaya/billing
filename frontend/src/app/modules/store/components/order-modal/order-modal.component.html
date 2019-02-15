@@ -1,0 +1,61 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" (click)="closeModal()">&times;</button>
+  <h4 class="modal-title">{{currentSubscription.subName}} from {{currentSubscription.company.companyName}}</h4>
+</div><!-- modal header -->
+
+<div class="modal-body">
+  <div class="form-group">
+    <p>Price in a day {{currentSubscription.subPrice}} $</p>
+    <p>Min days: {{currentSubscription.subMinAmountDays}}</p>
+    <label>Information:</label>
+    <p>{{currentSubscription.subInformation}}</p>
+
+    <div class="form-group">
+      <label>End date: </label>
+      <div class="input-group">
+        <input type="text"
+               placeholder="Enter end date"
+               class="form-control"
+               bsDatepicker placement="right"
+               [minDate]="minStartDate"
+               [(ngModel)]="order.orderEndDate">
+        <span class="input-group-addon">
+            <span class="glyphicon-calendar glyphicon"></span>
+          </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Billing Account:</label>
+      <br>
+      <div class="btn-group" dropdown *ngIf="billingAccounts.length > 0">
+        <button type="button" class="btn btn-default">{{currentBillingAccount.baNumber}}</button>
+        <button id="button-split-ba" type="button" dropdownToggle
+                class="btn btn-default dropdown-toggle dropdown-toggle-split"
+                aria-controls="dropdown-split">
+          <span class="caret"></span>
+        </button>
+        <ul id="dropdown-split-ba" *dropdownMenu class="dropdown-menu"
+            role="menu" aria-labelledby="button-split">
+          <li role="menuitem" *ngFor="let account of billingAccounts"
+              [class.active]="account === currentBillingAccount"
+              (click)="currentBillingAccount = account">
+            <a class="dropdown-item">{{account.baNumber}}</a>
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="billingAccounts.length === 0">
+        <p>You don't have billing accounts</p>
+      </div>
+
+    </div>
+  </div>
+</div><!-- modal body -->
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="subscribe()">Subscribe</button>
+  <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
+</div>
+
+

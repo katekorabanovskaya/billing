@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" (click)="closeModal()">&times;</button>
+  <h4 class="modal-title">{{isEditableMode ? "Editing" : "Creating"}} sub</h4>
+</div><!-- modal header -->
+
+<div class="modal-body">
+  <form #subForm="ngForm" novalidate>
+  <div class="form-group">
+    <label>Sub Name:</label>
+    <input class="form-control" name="name" [(ngModel)]="currentSubscription.subName"
+           required
+           placeholder="Enter sub name">
+    <label>Sub Url:</label>
+    <input class="form-control" name="url" [(ngModel)]="currentSubscription.subUrl"
+           placeholder="Enter url">
+    <label>Sub Price:</label>
+    <input class="form-control" name="price" type="number" [(ngModel)]="currentSubscription.subPrice"
+           required
+           placeholder="Enter sub price">
+    <label>Sub information:</label>
+    <input class="form-control" name="information" [(ngModel)]="currentSubscription.subInformation"
+           placeholder="Enter sub information">
+    <label>Sub image:</label>
+    <input class="form-control" name="image" [(ngModel)]="currentSubscription.subImage"
+           placeholder="Enter sub image">
+    <label>Sub min amount days:</label>
+    <input class="form-control" name="minDays" [(ngModel)]="currentSubscription.subMinAmountDays"
+           required
+           placeholder="Enter min amount days">
+  </div>
+  </form>
+</div><!-- modal body -->
+
+<div class="modal-footer">
+  <!--<button *ngIf="isEditableMode" type="button" class="btn btn-default pull-left"-->
+          <!--(click)="deleteCompanySubscription(currentSubscription.subId)">Delete-->
+  <!--</button>-->
+  <button [disabled]="subForm.invalid" type="button" class="btn btn-default" (click)="saveCompanySubscription()">
+    {{isEditableMode ? "Save" : "Create"}}
+  </button>
+  <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
+</div><!-- modal footer -->

@@ -1,0 +1,17 @@
+<div class="col-md-3">
+  <img class="img-circle" [src]="subscription.subImage === null ? 'http://source.unsplash.com/random' : subscription.subImage"
+       alt="Generic placeholder image" width="140" height="140">
+  <h2><a class="btn-link" [href]="subscription.subUrl">
+    <span class="text-capitalize">{{subscription.subName}}</span></a></h2>
+  <h3>{{subscription.subPrice}} $ in a day</h3>
+  <!--<p>{{subscription.subInformation}}</p>-->
+  <div class="group-inline">
+    <a class="btn btn-link" role="button" (click)="clickDetails()">
+      View details &raquo;</a>
+    <!--<a class="btn btn-link" role="button">-->
+      <!--<span class="glyphicon glyphicon-heart-empty"></span>-->
+    <!--</a>-->
+  </div>
+</div>
+
+

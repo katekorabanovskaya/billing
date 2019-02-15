@@ -1,0 +1,74 @@
+<!-- Carousel-->
+<!--<app-carousel></app-carousel>-->
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row well">
+    <div class="col-xs-offset-1 col-xs-10">
+
+      <!--<div class="btn-group btn-lg btn-group-justified">-->
+      <!--<a class="btn btn-primary">All</a>-->
+      <!--<a class="btn btn-primary">Latest</a>-->
+      <!--<a class="btn btn-primary">Popular</a>-->
+      <!--<a class="btn btn-primary">My subs</a>-->
+      <!--</div>&lt;!&ndash;btn-group&ndash;&gt;-->
+
+      <!--Search row-->
+      <div class="input-group">
+        <input [(ngModel)]="currentSubName"
+               [typeahead]="subNames"
+               (input)="changeSubName()"
+               class="form-control"
+               placeholder="Search">
+        <span class="input-group-btn">
+
+          <div class="btn-group" dropdown>
+            <button type="button" class="btn btn-default">{{currentCategory.categoryName}}</button>
+            <button id="button-split" type="button" dropdownToggle
+                    class="btn btn-default dropdown-toggle dropdown-toggle-split"
+                    aria-controls="dropdown-split">
+              <span class="caret"></span>
+            </button>
+            <ul id="dropdown-split" *dropdownMenu class="dropdown-menu"
+                role="menu" aria-labelledby="button-split">
+              <li role="menuitem" *ngFor="let category of categories" [class.active]="category === currentCategory"
+                  (click)="currentCategory = category">
+                <a class="dropdown-item">{{category.categoryName}}</a>
+              </li>
+            </ul>
+          </div>
+
+          <button class="btn btn-default" type="button" (click)="chooseSub()">
+            <span class="glyphicon glyphicon-search"></span> Search
+          </button>
+        </span>
+      </div><!-- /input-group-->
+    </div><!--col-->
+  </div><!--row-->
+
+  <div class="row well">
+    <div *ngIf="companySubscriptions.length > 0">
+      <app-subscription-form *ngFor="let sub of companySubscriptions" [subscription]="sub"
+                             (onClickDetails)="openOrderModal(sub)"></app-subscription-form>
+    </div>
+    <div *ngIf="companySubscriptions.length == 0">
+      <p>Subscriptions not found</p>
+    </div>
+  </div><!-- /row -->
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <pagination [boundaryLinks]="true"
+                  [totalItems]="totalItems"
+                  [itemsPerPage]="size"
+                  [(ngModel)]="currentPage"
+                  [maxSize]="maxAmountPages"
+                  (pageChanged)="pageChanged($event)"
+                  previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+      </pagination>
+    </div>
+  </div>
+</div><!--container-->
+<app-footer></app-footer>
+
+
+

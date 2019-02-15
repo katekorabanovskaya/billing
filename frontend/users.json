@@ -1,0 +1,26 @@
+[
+  {
+    "userId": "2",
+    "username": "desireddev",
+    "userLogin": "yourdesireddev@gmail.com",
+    "userPassword": "tratata",
+    "registrationDate": "1.10.2018",
+    "roleId": "1"
+  },
+  {
+    "userId": "3",
+    "username": "onix",
+    "userLogin": "youronix@gmail.com",
+    "userPassword": "diffpasssword",
+    "registrationDate": "2.10.2018",
+    "roleId": "2"
+  },
+  {
+    "userId": "4",
+    "username": "pikachu",
+    "userLogin": "ulitkaulitka@gmail.com",
+    "userPassword": "mypass",
+    "registrationDate": "2.10.2018",
+    "roleId": "2"
+  }
+]

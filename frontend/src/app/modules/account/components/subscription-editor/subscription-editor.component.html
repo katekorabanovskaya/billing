@@ -1,0 +1,22 @@
+<div class="container marketing">
+
+  <div class="row">
+    <div class="col-md-2">
+      <h2 class="header">Options</h2>
+      <button class="btn btn-default btn-block" (click)="updateCompanySubscriptions()">Refresh</button>
+      <button class="btn btn-default btn-block" (click)="openSubscriptionModal()">Create new sub</button>
+    </div>
+
+    <div class="col-md-10">
+
+      <div class="row well">
+        <app-subscription-form *ngFor="let sub of companySubscriptions" [subscription]="sub"
+                               (onClickDetails)="openSubscriptionModal(sub)"></app-subscription-form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!--<app-subscription-modal></app-subscription-modal>-->
+

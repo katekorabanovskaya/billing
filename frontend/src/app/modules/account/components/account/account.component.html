@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+
+  <div class="row well">
+
+    <div class="col-md-8">
+      <h2 class="header">Welcome {{account.username}}</h2>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+
+        <div class="btn-group">
+          <label class="btn btn-default btn-block" [(ngModel)]="radioMenu"
+                 btnRadio="Subscriptions" tabindex="0" role="button" *ngIf="role === 'ROLE_COMPANY'">
+            Subscriptions</label>
+          <label class="btn btn-default btn-block" [(ngModel)]="radioMenu"
+                 btnRadio="Orders" tabindex="0" role="button">Orders</label>
+          <label class="btn btn-default btn-block" [(ngModel)]="radioMenu"
+                 btnRadio="Billings" tabindex="0" role="button">Billings</label>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isLoaded">
+    <div class="row" *ngIf="radioMenu === 'Orders'">
+      <app-order-editor [accountId]="account.accountId" [billingAccounts]="account.billingAccounts"></app-order-editor>
+    </div>
+
+    <div class="row" *ngIf="radioMenu === 'Subscriptions'">
+      <app-subscription-editor [company]="account.company"></app-subscription-editor>
+    </div>
+
+    <div class="row" *ngIf="radioMenu === 'Billings'">
+      <app-billing-account-settings
+        [billingAccounts]="account.billingAccounts"
+        [accountId]="account.accountId"></app-billing-account-settings>
+    </div>
+  </div>
+</div>
+

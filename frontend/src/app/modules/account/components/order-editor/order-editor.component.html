@@ -1,0 +1,52 @@
+<div class="container marketing">
+
+  <div class="row">
+    <div class="col-md-2">
+      <h2 class="header">Options</h2>
+      <button class="btn btn-default btn-block" (click)="updateBillings()">Refresh</button>
+    </div>
+
+    <div class="col-md-10">
+
+      <div class="row">
+        <tabset [justified]="true">
+          <tab heading="{{state}} Sub-s" (select)="setStatus(state)"
+               *ngFor="let state of statuses">
+          </tab>
+        </tabset>
+      </div>
+
+      <div class="row well">
+        <app-subscription-form *ngFor="let order of statusOrders" [subscription]="order.subscription"
+                               (onClickDetails)="openModal(template, order)"></app-subscription-form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal for user-->
+<ng-template #template>
+
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" (click)="closeModal()">&times;</button>
+    <h4 class="modal-title">{{currentOrder.subscription.subName}}</h4>
+    <p>Status: {{currentOrder.orderStatus.toString()}}</p>
+  </div><!-- modal header -->
+
+  <div class="modal-body">
+    <div class="form-group">
+      <p>Start date: {{currentOrder.orderStartDate}}</p>
+      <p>End date: {{currentOrder.orderEndDate}}</p>
+      <br>
+      <p>Price in a day: {{currentOrder.orderPriceInDay}}$</p>
+      <p>To pay in a week: {{currentOrder.orderPriceInDay * 7}}$</p>
+    </div>
+  </div><!-- modal body -->
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
+  </div><!-- modal footer -->
+
+</ng-template>
